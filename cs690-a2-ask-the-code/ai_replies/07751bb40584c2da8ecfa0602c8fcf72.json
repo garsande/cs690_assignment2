@@ -1,0 +1,9 @@
+{
+  "provider": "openai",
+  "model": "gpt-5.6-luna",
+  "prompt_key": "07751bb40584c2da8ecfa0602c8fcf72",
+  "asked_at": "2026-10-03T08:01:47+00:00",
+  "input_tokens": 1811,
+  "output_tokens": 101,
+  "text": "{\n  \"answer\": \"With redirects enabled (the default), Requests changes a POST into a GET when it receives a 302 Found response, unless the method is HEAD. It then follows the redirect to the URL in the Location header, sending the new request without the original POST body. If redirects are disabled, no follow-up request is made and the 302 response is returned directly.\",\n  \"file\": \"requests/sessions.py\",\n  \"line\": \"333-353\"\n}"
+}

@@ -1,0 +1,9 @@
+{
+  "provider": "openai",
+  "model": "gpt-5.6-luna",
+  "prompt_key": "ed45412bb252e47d6034340d27cf8805",
+  "asked_at": "2026-10-03T08:02:02+00:00",
+  "input_tokens": 1181,
+  "output_tokens": 85,
+  "text": "{\n  \"answer\": \"Yes. `cookiejar_from_dict` defaults `overwrite` to `True` (line 521), so existing cookies with the same name are replaced unless you explicitly pass `overwrite=False`. However, `merge_cookies` passes `overwrite=False` when merging a dictionary (line 553).\",\n  \"file\": \"cookies.py\",\n  \"line\": 521\n}"
+}

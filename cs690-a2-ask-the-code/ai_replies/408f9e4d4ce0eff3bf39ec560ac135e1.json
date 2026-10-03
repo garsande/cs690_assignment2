@@ -1,0 +1,9 @@
+{
+  "provider": "openai",
+  "model": "gpt-5.6-luna",
+  "prompt_key": "408f9e4d4ce0eff3bf39ec560ac135e1",
+  "asked_at": "2026-10-03T08:01:56+00:00",
+  "input_tokens": 1859,
+  "output_tokens": 62,
+  "text": "{\n  \"answer\": \"The individual request's headers are merged with the Session's headers. When the same header appears in both, the request-level value takes precedence; headers defined only on the Session are retained.\",\n  \"file\": \"sessions.py\",\n  \"line\": 490\n}"
+}

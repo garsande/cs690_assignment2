@@ -1,0 +1,9 @@
+{
+  "provider": "openai",
+  "model": "gpt-5.6-luna",
+  "prompt_key": "511c5a8287ae767454187eceadc20c8c",
+  "asked_at": "2026-10-03T08:02:09+00:00",
+  "input_tokens": 1174,
+  "output_tokens": 498,
+  "text": "{\n  \"answer\": \"The primary maintainer’s salary is not specified; Requests is maintained on a volunteer basis.\",\n  \"file\": null,\n  \"line\": null\n}"
+}

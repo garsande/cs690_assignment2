@@ -1,0 +1,9 @@
+{
+  "provider": "openai",
+  "model": "gpt-5.6-luna",
+  "prompt_key": "286f1506044e06195289f504c6ace074",
+  "asked_at": "2026-10-03T08:01:50+00:00",
+  "input_tokens": 1362,
+  "output_tokens": 27,
+  "text": "{\n  \"answer\": 30,\n  \"file\": \"sessions.py\",\n  \"line\": 434\n}"
+}

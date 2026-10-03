@@ -1,0 +1,9 @@
+{
+  "provider": "openai",
+  "model": "gpt-5.6-luna",
+  "prompt_key": "b0ee8f4899ca5412883b68683fe6b2f2",
+  "asked_at": "2026-10-03T08:01:45+00:00",
+  "input_tokens": 1789,
+  "output_tokens": 94,
+  "text": "{\n  \"answer\": \"Yes. When following redirects, requests removes the Authorization header if the destination hostname differs from the original hostname. This is determined by SessionRedirectMixin.should_strip_auth(), which returns True when old_parsed.hostname != new_parsed.hostname. The header is then removed during redirect handling. Proxy-Authorization is handled separately by rebuild_proxies().\",\n  \"file\": \"sessions.py\",\n  \"line\": \"127-132\"\n}"
+}

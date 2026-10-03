@@ -1,0 +1,9 @@
+{
+  "provider": "openai",
+  "model": "gpt-5.6-luna",
+  "prompt_key": "70ec3bf0ef196aa60ba5eb7fc17705cf",
+  "asked_at": "2026-10-03T08:01:58+00:00",
+  "input_tokens": 1138,
+  "output_tokens": 49,
+  "text": "{\n  \"answer\": \"ISO-8859-1 for text/* Content-Type headers without a charset; application/json defaults to UTF-8.\",\n  \"file\": \"utils.py\",\n  \"line\": 556\n}"
+}
