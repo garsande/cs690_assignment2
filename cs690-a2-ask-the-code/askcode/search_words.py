@@ -34,4 +34,40 @@ def search_words(question: str, chunks: list[Chunk], k: int = 3) -> list[Chunk]:
     This is the core idea of BM25, the standard keyword search (slide 45). BM25 adds
     adjustments for how often a word repeats and for chunk length.
     """
-    raise NotImplementedError("Step 3: write search_words in askcode/search_words.py")
+    if not chunks or k <= 0:
+        return []
+
+    question_words = set(words(question)) - STOPWORDS
+    if not question_words:
+        return []
+
+    chunk_word_sets = [
+        set(words(chunk.name + "\n" + chunk.text))
+        for chunk in chunks
+    ]
+
+    n_chunks = len(chunks)
+    weights: dict[str, float] = {}
+
+    for word in question_words:
+        document_frequency = sum(
+            1 for chunk_words in chunk_word_sets if word in chunk_words
+        )
+        if document_frequency > 0:
+            weights[word] = math.log(n_chunks / document_frequency)
+
+    if not weights:
+        return []
+
+    scored: list[tuple[float, int, Chunk]] = []
+    for index, (chunk, chunk_words) in enumerate(zip(chunks, chunk_word_sets)):
+        score = round(
+            sum(weight for word, weight in weights.items() if word in chunk_words),
+            6,
+        )
+        if score > 0:
+            scored.append((score, index, chunk))
+
+    scored.sort(key=lambda item: (-item[0], item[1]))
+    return [chunk for _, _, chunk in scored[:k]]
+

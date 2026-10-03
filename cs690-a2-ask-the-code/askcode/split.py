@@ -40,7 +40,41 @@ def split_file(path: Path, root: Path) -> list[Chunk]:
     and each decorator node has its own .lineno. A class node has .name and .body.
     Read the file with encoding="utf-8".
     """
-    raise NotImplementedError("Step 2: write split_file in askcode/split.py")
+    source = path.read_text(encoding="utf-8")
+    lines = source.split("\n")
+    tree = ast.parse(source)
+    relative_file = path.relative_to(root).as_posix()
+
+    chunks: list[Chunk] = []
+
+    def make_chunk(node: ast.FunctionDef | ast.AsyncFunctionDef, name: str) -> Chunk:
+        # Decorators are part of the chunk.  If there are several, the first one
+        # in source order determines the starting line.
+        start_line = min(
+            [node.lineno, *(decorator.lineno for decorator in node.decorator_list)]
+        )
+        end_line = node.end_lineno
+        if end_line is None:
+            raise ValueError(f"AST node for {name!r} has no end line")
+
+        text = "\n".join(lines[start_line - 1 : end_line])
+        return Chunk(
+            name=name,
+            start_line=start_line,
+            end_line=end_line,
+            text=text,
+            file=relative_file,
+        )
+
+    for node in tree.body:
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            chunks.append(make_chunk(node, node.name))
+        elif isinstance(node, ast.ClassDef):
+            for child in node.body:
+                if isinstance(child, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                    chunks.append(make_chunk(child, f"{node.name}.{child.name}"))
+
+    return chunks
 
 
 def split_corpus(root: Path = CORPUS_DIR) -> list[Chunk]:
@@ -50,4 +84,12 @@ def split_corpus(root: Path = CORPUS_DIR) -> list[Chunk]:
     and sorted as plain strings. Keep each file's chunks in file order.
     For the requests codebase this returns 230 chunks.
     """
-    raise NotImplementedError("Step 2: write split_corpus in askcode/split.py")
+    python_files = sorted(
+        root.rglob("*.py"),
+        key=lambda path: path.relative_to(root).as_posix(),
+    )
+
+    chunks: list[Chunk] = []
+    for path in python_files:
+        chunks.extend(split_file(path, root))
+    return chunks

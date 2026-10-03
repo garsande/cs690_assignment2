@@ -30,4 +30,54 @@ def parse_reply(text: str) -> dict:
 
     Return a new dict with exactly the three keys and the values from the reply.
     """
-    raise NotImplementedError("Step 4: write parse_reply in askcode/answer.py")
+    try:
+        stripped = text.strip()
+
+        # Allow exactly one optional Markdown code fence around the JSON object.
+        if stripped.startswith("```"):
+            lines = stripped.split("\n")
+            if len(lines) < 3 or lines[0] not in {"```", "```json"} or lines[-1] != "```":
+                raise BadReply("invalid code fence")
+            stripped = "\n".join(lines[1:-1]).strip()
+            if "```" in stripped:
+                raise BadReply("invalid code fence")
+        elif "```" in stripped:
+            raise BadReply("invalid code fence")
+
+        try:
+            reply = json.loads(stripped)
+        except Exception as exc:
+            raise BadReply("reply is not valid JSON") from exc
+
+        if not isinstance(reply, dict):
+            raise BadReply("reply must be a JSON object")
+
+        required = {"answer", "file", "line"}
+        if set(reply) != required:
+            raise BadReply("reply must contain exactly answer, file, and line")
+
+        answer = reply["answer"]
+        file = reply["file"]
+        line = reply["line"]
+
+        if not isinstance(answer, str) or not answer.strip():
+            raise BadReply("answer must be a non-empty string")
+
+        if file is not None and (not isinstance(file, str) or not file.strip()):
+            raise BadReply("file must be a non-empty string or null")
+
+        if line is not None:
+            if isinstance(line, bool) or not isinstance(line, int) or line < 1:
+                raise BadReply("line must be an integer at least 1 or null")
+
+        if (file is None) != (line is None):
+            raise BadReply("file and line must both be null or both be set")
+
+        return {"answer": answer, "file": file, "line": line}
+
+    except BadReply:
+        raise
+    except Exception as exc:
+        # The contract requires every malformed reply to surface as BadReply.
+        raise BadReply("invalid reply") from exc
+

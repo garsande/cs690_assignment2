@@ -37,4 +37,27 @@ def build_prompt_five_part(question: str, chunks: list[Chunk]) -> Prompt:
        the question. The question comes last. If chunks is empty, put NO_CODE under
        "Code:" instead.
     """
-    raise NotImplementedError("Step 4: write build_prompt_five_part in askcode/prompt.py")
+    system = """Goal:
+Answer the user's question using only the code shown.
+
+Inputs and outputs:
+Input is a question about the shown code. Output is one JSON object that answers the question and identifies the supporting file and line.
+
+Rules:
+Answer only from the code shown. Do not use outside knowledge or guess. If the code shown does not answer the question, use the answer "not found in the code shown" and set both "file" and "line" to null.
+
+Example:
+Question: What value does add_one return for x?
+{"answer": "It returns x + 1.", "file": "example.py", "line": 2}
+
+Reply format:
+Reply with exactly one JSON object with the keys "answer", "file", and "line". "answer" must be a string, "file" must be a string or null, and "line" must be an integer or null. Output nothing before or after the JSON object."""
+
+    if chunks:
+        code = "\n\n".join(format_chunk(chunk) for chunk in chunks)
+    else:
+        code = NO_CODE
+
+    user = f"Code:\n{code}\n\nQuestion:\n{question}"
+    return Prompt(system=system, user=user)
+
