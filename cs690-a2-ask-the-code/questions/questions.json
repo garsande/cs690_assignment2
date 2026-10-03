@@ -1,69 +1,69 @@
 [
   {
-    "id": "example-1",
-    "question": "Does requests keep the Authorization header when a redirect goes from http to https on the same host?",
-    "expected_file": "sessions.py",
-    "expected_function": "SessionRedirectMixin.should_strip_auth",
-    "expected_answer": "Yes. For an http to https redirect on the same host with the standard ports, should_strip_auth returns False, so the header is kept (lines 137 to 143)."
-  },
-  {
-    "id": "example-2",
+    "id": "q01",
     "question": "Does requests remove the Authorization header when a redirect goes to a different hostname?",
     "expected_file": "sessions.py",
     "expected_function": "SessionRedirectMixin.should_strip_auth",
     "expected_answer": "Yes. If the hostname of the old URL and new URL are different, should_strip_auth returns True, indicating that the Authorization header should be removed."
   },
   {
-    "id": "example-3",
+    "id": "q02",
     "question": "What happens to a POST request when the server responds with a 302 redirect?",
     "expected_file": "sessions.py",
     "expected_function": "SessionRedirectMixin.rebuild_method",
     "expected_answer": "Requests changes the method to GET for a 302 redirect unless the original method is HEAD."
   },
   {
-    "id": "example-4",
+    "id": "q03",
     "question": "What happens if a request exceeds the maximum number of allowed redirects?",
     "expected_file": "sessions.py",
     "expected_function": "SessionRedirectMixin.resolve_redirects",
     "expected_answer": "Requests raises a TooManyRedirects exception when the number of redirects reaches the session's max_redirects value."
   },
   {
-    "id": "example-5",
+    "id": "q04",
     "question": "What is the default maximum number of redirects allowed by a requests Session?",
     "expected_file": "sessions.py",
     "expected_function": "Session.__init__",
     "expected_answer": "The session uses DEFAULT_REDIRECT_LIMIT, which is 30 redirects."
   },
+    {
+    "id": "q05",
+    "question": "What happens to a POST request when the server responds with a 301 redirect?",
+    "expected_file": "sessions.py",
+    "expected_function": "SessionRedirectMixin.rebuild_method",
+    "expected_answer": "Requests changes a POST request to GET when it receives a 301 redirect."
+  },
   {
-    "id": "example-6",
+    "id": "q06",
     "question": "If both a Session and an individual request define headers, how are those settings combined?",
     "expected_file": "sessions.py",
     "expected_function": "merge_setting",
     "expected_answer": "The session and request mappings are merged, with request values updating the session values. Keys whose resulting value is None are removed."
   },
   {
-    "id": "example-7",
+    "id": "q07",
     "question": "If no character encoding is specified for a text Content-Type header, what encoding does requests choose?",
     "expected_file": "utils.py",
     "expected_function": "get_encoding_from_headers",
     "expected_answer": "If the Content-Type contains 'text' and no charset parameter is provided, requests returns ISO-8859-1."
   },
   {
-    "id": "example-8",
+    "id": "q08",
     "question": "Does a PreparedRequest regenerate its Cookie header every time prepare_cookies is called?",
     "expected_file": "models.py",
     "expected_function": "PreparedRequest.prepare_cookies",
     "expected_answer": "No. Because of cookielib behavior, the Cookie header is normally generated only once. Later calls have no effect unless the existing Cookie header is removed first."
   },
   {
-    "id": "example-9",
-    "question": "Which company pays for hosting the requests documentation?",
-    "expected_file": null,
-    "expected_function": null,
-    "expected_answer": "The code cannot answer this. A correct reply says not found in the code shown, with null file and line."
+    "id": "q09",
+    "question": "When converting a dict to a CookieJar, is overwrite True by default?",
+    "expected_file": "cookies.py",
+    "expected_function": "cookiejar_from_dict",
+    "expected_answer": "Yes. The overwrite argument defaults to True, so cookies in the dictionary replace existing cookies with matching names."
   },
   {
-    "id": "example-10",
+    "id": "q10",
     "question": "What salary does the primary maintainer of requests receive for maintaining the project?",
     "expected_file": null,
     "expected_function": null,
