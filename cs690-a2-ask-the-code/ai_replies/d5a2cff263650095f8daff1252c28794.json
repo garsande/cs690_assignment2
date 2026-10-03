@@ -1,0 +1,9 @@
+{
+  "provider": "openai",
+  "model": "gpt-5.6-luna",
+  "prompt_key": "d5a2cff263650095f8daff1252c28794",
+  "asked_at": "2026-10-03T02:59:18+00:00",
+  "input_tokens": 54711,
+  "output_tokens": 35,
+  "text": "{\"answer\":\"Yes. When redirecting, requests removes the Authorization header if the old and new hostnames differ.\",\"file\":\"sessions.py\",\"line\":131}"
+}

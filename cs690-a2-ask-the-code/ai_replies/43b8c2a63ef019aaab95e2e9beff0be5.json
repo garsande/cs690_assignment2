@@ -1,0 +1,9 @@
+{
+  "provider": "openai",
+  "model": "gpt-5.6-luna",
+  "prompt_key": "43b8c2a63ef019aaab95e2e9beff0be5",
+  "asked_at": "2026-10-03T02:21:17+00:00",
+  "input_tokens": 1170,
+  "output_tokens": 41,
+  "text": "{\"answer\":\"No. The Cookie header will not be regenerated if it already exists; subsequent calls have no effect unless the header is removed first.\",\"file\":\"models.py\",\"line\":615}"
+}

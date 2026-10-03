@@ -1,0 +1,9 @@
+{
+  "provider": "openai",
+  "model": "gpt-5.6-luna",
+  "prompt_key": "f5c297548b2143d49dea464fa3361d3e",
+  "asked_at": "2026-10-03T02:21:12+00:00",
+  "input_tokens": 2045,
+  "output_tokens": 38,
+  "text": "{\"answer\":\"The individual request's headers are merged with the Session's headers, with the request headers taking precedence when keys overlap.\",\"file\":\"sessions.py\",\"line\":491}"
+}

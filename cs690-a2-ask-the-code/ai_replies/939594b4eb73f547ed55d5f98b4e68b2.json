@@ -1,0 +1,9 @@
+{
+  "provider": "openai",
+  "model": "gpt-5.6-luna",
+  "prompt_key": "939594b4eb73f547ed55d5f98b4e68b2",
+  "asked_at": "2026-10-03T02:47:45+00:00",
+  "input_tokens": 514,
+  "output_tokens": 48,
+  "text": "{\"answer\":\"The session headers and request headers are merged into a new dictionary, with request headers overriding session headers for duplicate keys. Any headers whose resulting value is None are removed.\",\"file\":\"sessions.py\",\"line\":79}"
+}

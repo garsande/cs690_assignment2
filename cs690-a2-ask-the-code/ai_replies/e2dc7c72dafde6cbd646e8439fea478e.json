@@ -1,0 +1,9 @@
+{
+  "provider": "openai",
+  "model": "gpt-5.6-luna",
+  "prompt_key": "e2dc7c72dafde6cbd646e8439fea478e",
+  "asked_at": "2026-10-03T02:47:40+00:00",
+  "input_tokens": 1414,
+  "output_tokens": 42,
+  "text": "{\"answer\":\"It raises a TooManyRedirects exception with the message \\\"Exceeded {self.max_redirects} redirects.\\\" and includes the current response.\",\"file\":\"sessions.py\",\"line\":191}"
+}
